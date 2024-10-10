@@ -1,4 +1,3 @@
-import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, Input, PLATFORM_ID, signal, SimpleChanges } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 

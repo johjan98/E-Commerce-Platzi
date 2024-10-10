@@ -2,17 +2,19 @@ import { Component, signal } from '@angular/core';
 import { ProductComponent } from '../../components/product/product.component';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../../shared/components/models/product.model';
+import { HeaderComponent } from '../../../shared/components/header/header.component';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [ CommonModule,  ProductComponent],
+  imports: [ CommonModule,  ProductComponent, HeaderComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
 export class ListComponent {
 
   products = signal<Product[]>([]);
+  cart = signal<Product[]>([]);
 
   constructor(){
     const initProducts: Product[] = [
@@ -34,8 +36,7 @@ export class ListComponent {
     this.products.set(initProducts);
   }
 
-  fromChild(event: string){
-    console.log('This is the father');
-    console.log(event);
+  addToCart(product: Product){
+    this.cart.update(prevStat => [...prevStat, product])
   }
 }
